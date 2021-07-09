@@ -15,7 +15,7 @@ addBtn.addEventListener("click", function(e) {
   }
 
   let myObj = {
-    word:addWords.value,
+    word:addWord.value,
     text:addTxt.value
   }
   wordsObj.push(myObj);
