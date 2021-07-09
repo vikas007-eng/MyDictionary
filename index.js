@@ -46,7 +46,7 @@ function showWords() {
                     </div>
                 </div>`;
   });
-  let notesElm = document.getElementById("words");
+  let wordsElm = document.getElementById("words");
   if (wordsObj.length != 0) {
     wordsElm.innerHTML = html;
   } else {
