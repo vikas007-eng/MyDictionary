@@ -31,7 +31,7 @@ addBtn.addEventListener("click", function(e) {
 function showWords() {
   let words = localStorage.getItem("words");
   if (words == null) {
-    wordssObj = [];
+    wordsObj = [];
   } else {
     wordsObj = JSON.parse(words);
   }
