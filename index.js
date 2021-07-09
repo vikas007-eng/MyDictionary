@@ -6,68 +6,68 @@ showNotes(); // Once reload the screen the notes will be shown
 let addBtn = document.getElementById("addBtn");
 addBtn.addEventListener("click", function(e) {
   let addTxt = document.getElementById("addTxt");
-  let addTitle = document.getElementById("addTitle");
-  let notes = localStorage.getItem("notes");
-  if (notes == null) {
-    notesObj = [];
+  let addWord = document.getElementById("addWord");
+  let words = localStorage.getItem("words");
+  if (words == null) {
+    wordsObj = [];
   } else {
-    notesObj = JSON.parse(notes); // data becomes javaScript obj then only we can push the data
+    wordsObj = JSON.parse(words); // data becomes javaScript obj then only we can push the data
   }
 
   let myObj = {
-    title:addTitle.value,
+    word:addWords.value,
     text:addTxt.value
   }
-  notesObj.push(myObj);
+  wordsObj.push(myObj);
   
-  localStorage.setItem("notes", JSON.stringify(notesObj)); //becauselocal storage store data in the string form 
+  localStorage.setItem("words", JSON.stringify(wordsObj)); //becauselocal storage store data in the string form 
   addTxt.value = ""; // otheriwse value will be stagnent there
-  addTitle.value=""; //title will be pressent there
+  addWord.value=""; //title will be pressent there
 //   console.log(notesObj);
-  showNotes();
+  showWords();
 });
 
 // Function to show elements from localStorage
-function showNotes() {
-  let notes = localStorage.getItem("notes");
-  if (notes == null) {
-    notesObj = [];
+function showWords() {
+  let words = localStorage.getItem("words");
+  if (words == null) {
+    wordssObj = [];
   } else {
-    notesObj = JSON.parse(notes);
+    wordsObj = JSON.parse(words);
   }
   let html = "";
-  notesObj.forEach(function(element, index) {
+  wordsObj.forEach(function(element, index) {
     html += `
             <div class="noteCard my-2 mx-2 card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">${element.title}</h5>
+                        <h5 class="card-title">${element.word}</h5>
                         <p class="card-text"> ${element.text}</p>
-                        <button id="${index}"onclick="deleteNote(this.id)" class="btn btn-primary">Delete Note</button>
+                        <button id="${index}"onclick="deleteWord(this.id)" class="btn btn-primary">Delete Word</button>
                     </div>
                 </div>`;
   });
-  let notesElm = document.getElementById("notes");
-  if (notesObj.length != 0) {
-    notesElm.innerHTML = html;
+  let notesElm = document.getElementById("words");
+  if (wordsObj.length != 0) {
+    wordsElm.innerHTML = html;
   } else {
-    notesElm.innerHTML = `Nothing to show! Use "Add a Note" section above to add notes.`;
+    wordsElm.innerHTML = `Nothing to show! Use "Add a Note" section above to add notes.`;
   }
 }
 
 // Function to delete a note
-function deleteNote(index) {
+function deleteWord(index) {
 //   console.log("I am deleting", index);
 
-  let notes = localStorage.getItem("notes");
-  if (notes == null) {
-    notesObj = [];
+  let words = localStorage.getItem("words");
+  if (words == null) {
+    wordsObj = [];
   } else {
-    notesObj = JSON.parse(notes);
+    wordsObj = JSON.parse(words);
   }
 
-  notesObj.splice(index, 1);//index se 1 ele dlt krega
-  localStorage.setItem("notes", JSON.stringify(notesObj)); // update jruri h ,dlt show nai hoga
-  showNotes();
+  wordsObj.splice(index, 1);//index se 1 ele dlt krega
+  localStorage.setItem("words", JSON.stringify(wordsObj)); // update jruri h ,dlt show nai hoga
+  showWords();
 }
 
 // for search 
@@ -76,10 +76,10 @@ search.addEventListener("input", function(){
 
     let inputVal = search.value.toLowerCase(); //  taki agr koi big  letter m bhi search mare to bta chle
     // console.log('Input event fired!', inputVal);
-    let noteCards = document.getElementsByClassName('noteCard');// notecard class wale sare ele dedo
-    console.log(noteCards)
+    let wordCards = document.getElementsByClassName('wordCard');// notecard class wale sare ele dedo
+    console.log(wordCards)
     
-    Array.from(noteCards).forEach(function(element){
+    Array.from(wordCards).forEach(function(element){
         let cardTxt = element.getElementsByTagName("p")[0].innerText;//ele k andr jitne data h tag p m (0 se start krk),usko cardtxt m dal do , nmbr bdhte jayga (since for each) 
        
         if(cardTxt.includes(inputVal)){// agr value include h t usko block show krdo
