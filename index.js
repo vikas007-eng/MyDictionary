@@ -1,6 +1,6 @@
  
 
-showNotes(); // Once reload the screen the notes will be shown
+showWords(); // Once reload the screen the notes will be shown
 
 // If user adds a note, add it to the localStorage
 let addBtn = document.getElementById("addBtn");
